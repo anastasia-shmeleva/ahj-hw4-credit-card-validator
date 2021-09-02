@@ -30,3 +30,19 @@ test('should validate input', () => {
 
   expect(inputEl.classList.contains('valid')).toBeTruthy();
 });
+
+document.body.innerHTML = '<div id="container"></div>';
+
+const container = document.querySelector('#container');
+const cardChecker = new CardChecker();
+
+const widget = new Widget(container, cardChecker);
+
+widget.bindToDOM();
+
+test.each([
+  ['true for valid nuber', '347439603177587', true],
+  ['false for invalid number', '45435345345', false],
+])(('it should be %s'), (_, input, expected) => {
+  expect(widget.cardChecker.luhnAlgorithmCheck(input)).toBe(expected);
+});

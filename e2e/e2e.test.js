@@ -2,10 +2,10 @@ import puppetteer from 'puppeteer';
 
 jest.setTimeout(30000); // default puppeteer timeout
 
-describe('INN/OGRN form', () => {
+describe('Credit Card Validator form', () => {
   let browser = null;
   let page = null;
-  const baseUrl = 'http://localhost:9000';
+  const baseUrl = 'http://localhost:8080';
 
   beforeAll(async () => {
     browser = await puppetteer.launch({
@@ -20,13 +20,13 @@ describe('INN/OGRN form', () => {
     await browser.close();
   });
 
-  test('should add .valid class for valid inn', async () => {
+  test('should add .valid class', async () => {
     await page.goto(baseUrl);
-    const form = await page.$('[data-widget=innogrn-form-widget]');
-    const input = await form.$('[data-id=innogrn-input]');
-    await input.type('7715964180');
-    const submit = await form.$('[data-id=innogrn-submit]');
+    const form = await page.$('#widget-container');
+    const input = await form.$('#card_number');
+    await input.type('347439603177587');
+    const submit = await form.$('#submitform');
     submit.click();
-    await page.waitFor('[data-id=innogrn-input].valid');
+    await page.waitFor('#card_number.valid');
   });
 });
