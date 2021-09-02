@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ao28tjenub2u8kk6?svg=true)](https://ci.appveyor.com/project/anastasia-shmeleva/ahj-hw4-credit-card-validator)
